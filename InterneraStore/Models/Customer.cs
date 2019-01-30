@@ -9,8 +9,9 @@ namespace InterneraStore.Models
     public class Customer
     {
         public int Id { get; set; }
-
+        
         [Required]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Name should be more then 2 characters, but less then 20")]
         public string Name { get; set; }
     }
 }

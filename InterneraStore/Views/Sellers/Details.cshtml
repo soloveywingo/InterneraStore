@@ -13,17 +13,21 @@
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            Company
+            @Html.DisplayNameFor(model => model.Company.Id)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Company.Id)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Company.Name)
+        </dd>
     </dl>
 </div>
 <p>

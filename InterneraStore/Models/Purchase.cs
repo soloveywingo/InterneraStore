@@ -9,18 +9,17 @@ namespace InterneraStore.Models
     public class Purchase
     {
         public int Id { get; set; }
-
-        [Required]
+        
         public int Quantity { get; set; }
+        
+        [Required]
+        public Customer Customer { get; set; }
 
         [Required]
-        public int Customer_Id { get; set; }
+        public Seller Seller { get; set; }
 
         [Required]
-        public int Seller_Id { get; set; }
-
-        [Required]
-        public int Product_Id { get; set; }
+        public Product Product { get; set; }
 
 
     }
