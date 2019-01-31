@@ -9,7 +9,8 @@
  *   http://www.opensource.org/licenses/mit-license.php
  */
 
-;(function($) {
+; (function ($) {
+    console.log('1231231231')
   $.fn.customselect = function(method, value) {
 
     // Default Options
