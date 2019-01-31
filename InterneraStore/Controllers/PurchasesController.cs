@@ -38,7 +38,7 @@ namespace InterneraStore.Controllers
         
         public ActionResult Create()
         {
-            ViewBag.Customers = db.Costomers;
+            ViewBag.Customers = db.Customers;
             ViewBag.Sellers = db.Sellers;
             ViewBag.Products = db.Products;
             return View();
@@ -60,31 +60,39 @@ namespace InterneraStore.Controllers
         }
         public ActionResult Edit(int? id)
         {
+            ViewBag.Customers = db.Customers;
+            ViewBag.Sellers = db.Sellers;
+            ViewBag.Products = db.Products;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var purchaseViewModel = new PurchaseViewModel();
             Purchase purchase = db.Purchases.Find(id);
+            purchaseViewModel.Purchase = purchase;
             if (purchase == null)
             {
                 return HttpNotFound();
             }
-            return View(purchase);
+            return View(purchaseViewModel);
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Quantity")] Purchase purchase)
+        public ActionResult Edit(PurchaseViewModel purchaseViewModel)
         {
             if (ModelState.IsValid)
             {
+                Purchase purchase = EditPurchase(purchaseViewModel);
+
                 db.Entry(purchase).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(purchase);
+            return View(purchaseViewModel);
         }
         
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,11 +130,20 @@ namespace InterneraStore.Controllers
         {
             return new Purchase
             {
-                Customer = db.Costomers.Find(purchaseViewModel.CustomerId),
+                Customer = db.Customers.Find(purchaseViewModel.CustomerId),
                 Product = db.Products.Find(purchaseViewModel.ProductId),
                 Seller = db.Sellers.Find(purchaseViewModel.SellerId),
                 Quantity = purchaseViewModel.Quantity
             };
         }
+        private Purchase EditPurchase(PurchaseViewModel purchaseViewModel)
+        {
+            Purchase purchase = db.Purchases.Find(purchaseViewModel.Purchase.Id);
+            purchase.Product = db.Products.Find(purchaseViewModel.ProductId);
+            purchase.Seller = db.Sellers.Find(purchaseViewModel.SellerId);
+            purchase.Customer = db.Customers.Find(purchaseViewModel.CustomerId);
+            purchase.Quantity = purchaseViewModel.Quantity;
+            return purchase;
+        }   
     }
 }

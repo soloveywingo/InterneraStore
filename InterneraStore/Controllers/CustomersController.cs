@@ -16,7 +16,7 @@ namespace InterneraStore.Controllers
         
         public ActionResult Index()
         {
-            return View(db.Costomers.ToList());
+            return View(db.Customers.ToList());
         }
         
         public ActionResult Details(int? id)
@@ -25,7 +25,7 @@ namespace InterneraStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Costomers.Find(id);
+            Customer customer = db.Customers.Find(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -44,7 +44,7 @@ namespace InterneraStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Costomers.Add(customer);
+                db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -58,7 +58,7 @@ namespace InterneraStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Costomers.Find(id);
+            Customer customer = db.Customers.Find(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -85,7 +85,7 @@ namespace InterneraStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Costomers.Find(id);
+            Customer customer = db.Customers.Find(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -97,8 +97,8 @@ namespace InterneraStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Customer customer = db.Costomers.Find(id);
-            db.Costomers.Remove(customer);
+            Customer customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

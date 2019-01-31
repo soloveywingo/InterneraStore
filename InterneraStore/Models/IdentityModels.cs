@@ -34,7 +34,7 @@ namespace InterneraStore.Models
 
         public DbSet<Company> Companies { get; set; }
 
-        public DbSet<Customer> Costomers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         public DbSet<Purchase> Purchases { get; set; }
     }

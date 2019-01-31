@@ -14,12 +14,12 @@ namespace InterneraStore.Controllers
     public class SellersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
         public ActionResult Index()
         {
             return View(db.Sellers.ToList());
         }
-        
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,7 +33,7 @@ namespace InterneraStore.Controllers
             }
             return View(seller);
         }
-        
+
         public ActionResult Create()
         {
             ViewBag.Companies = db.Companies;
@@ -54,7 +54,7 @@ namespace InterneraStore.Controllers
 
             return View(sellerViewModel);
         }
-        
+
         public ActionResult Edit(int? id)
         {
             ViewBag.Companies = db.Companies;
@@ -65,14 +65,14 @@ namespace InterneraStore.Controllers
             var sellerViewModel = new SellerViewModel();
             Seller seller = db.Sellers.Find(id);
             sellerViewModel.Seller = seller;
-            
+
             if (seller == null)
             {
                 return HttpNotFound();
             }
             return View(sellerViewModel);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SellerViewModel sellerViewModel)
@@ -88,7 +88,7 @@ namespace InterneraStore.Controllers
             return View(sellerViewModel);
         }
 
-        
+
 
         public ActionResult Delete(int? id)
         {
@@ -103,7 +103,7 @@ namespace InterneraStore.Controllers
             }
             return View(seller);
         }
-        
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -126,11 +126,8 @@ namespace InterneraStore.Controllers
         private Seller EditSeller(SellerViewModel sellerViewModel)
         {
             Seller seller = db.Sellers.Find(sellerViewModel.Seller.Id);
-            if (sellerViewModel.Seller.Name != "")
-            {
-                seller.Company = db.Companies.Find(sellerViewModel.CompanyId);
-                seller.Name = sellerViewModel.Seller.Name;
-            }
+            seller.Company = db.Companies.Find(sellerViewModel.CompanyId);
+            seller.Name = sellerViewModel.Seller.Name;
             return seller;
         }
     }
