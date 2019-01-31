@@ -11,6 +11,5 @@ namespace InterneraStore.ViewModels
         public Seller Seller { get; set; }
 
         public int CompanyId { get; set; }
-        
     }
 }

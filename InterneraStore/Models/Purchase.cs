@@ -11,13 +11,14 @@ namespace InterneraStore.Models
         public int Id { get; set; }
         
         public int Quantity { get; set; }
-        
+
+        [Required]
         public virtual Customer Customer { get; set; }
-        
+
+        [Required]
         public virtual Seller Seller { get; set; }
         
+        [Required]
         public virtual Product Product { get; set; }
-
-
     }
 }

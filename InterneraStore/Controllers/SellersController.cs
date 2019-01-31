@@ -44,9 +44,9 @@ namespace InterneraStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(SellerViewModel sellerViewModel)
         {
+            sellerViewModel.Seller.Company = db.Companies.Find(sellerViewModel.CompanyId);
             if (ModelState.IsValid)
             {
-                sellerViewModel.Seller.Company = db.Companies.Find(sellerViewModel.CompanyId);
                 db.Sellers.Add(sellerViewModel.Seller);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -48,7 +48,6 @@ namespace InterneraStore.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(product);
         }
         
