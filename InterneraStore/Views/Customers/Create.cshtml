@@ -5,12 +5,19 @@
 }
 
 <h2>Create</h2>
+<select id='standard' name='standard' class='custom-select'>
+    <option value=''>None - Please Select</option>
+    <option value='1'>abc</option>
+    <option value='2'>bcd</option>
+    <option value='3'>cde</option>
+    <option value='4'>def</option>
+    <option value='5'>efb</option>
+</select>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Customer</h4>
         <hr />
@@ -38,3 +45,8 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script>
+    $(function () {
+        $("#standard").customselect();
+    });
+</script>
