@@ -17,7 +17,6 @@ namespace InterneraStore.Controllers
         
         public ActionResult Index()
         {
-            ViewBag.Companies = db.Companies;
             return View(db.Sellers.ToList());
         }
         
@@ -58,6 +57,7 @@ namespace InterneraStore.Controllers
         
         public ActionResult Edit(int? id)
         {
+            ViewBag.Companies = db.Companies;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -65,8 +65,7 @@ namespace InterneraStore.Controllers
             var sellerViewModel = new SellerViewModel();
             Seller seller = db.Sellers.Find(id);
             sellerViewModel.Seller = seller;
-
-            ViewBag.Companies = db.Companies;
+            
             if (seller == null)
             {
                 return HttpNotFound();

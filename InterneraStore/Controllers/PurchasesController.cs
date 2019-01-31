@@ -7,16 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using InterneraStore.Models;
+using InterneraStore.ViewModels;
 
 namespace InterneraStore.Controllers
 {
     public class PurchasesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
         
         public ActionResult Index()
         {
-            return View(db.Purchases.ToList());
+            List<Purchase> purchases = db.Purchases.ToList();
+            return View(purchases);
         }
         
         public ActionResult Details(int? id)
@@ -35,23 +38,26 @@ namespace InterneraStore.Controllers
         
         public ActionResult Create()
         {
+            ViewBag.Customers = db.Costomers;
+            ViewBag.Sellers = db.Sellers;
+            ViewBag.Products = db.Products;
             return View();
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Quantity")] Purchase purchase)
+        public ActionResult Create([Bind(Include = "Id,Quantity,ProductId,CustomerId,SellerId")] PurchaseViewModel purchaseViewModel)
         {
             if (ModelState.IsValid)
             {
+                Purchase purchase = GetPurchase(purchaseViewModel);
                 db.Purchases.Add(purchase);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(purchase);
+            return View(purchaseViewModel);
         }
-        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -110,6 +116,17 @@ namespace InterneraStore.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private Purchase GetPurchase(PurchaseViewModel purchaseViewModel)
+        {
+            return new Purchase
+            {
+                Customer = db.Costomers.Find(purchaseViewModel.CustomerId),
+                Product = db.Products.Find(purchaseViewModel.ProductId),
+                Seller = db.Sellers.Find(purchaseViewModel.SellerId),
+                Quantity = purchaseViewModel.Quantity
+            };
         }
     }
 }

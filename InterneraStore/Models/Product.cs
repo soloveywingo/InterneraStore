@@ -16,7 +16,7 @@ namespace InterneraStore.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Price is required")]
-        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid price, use dots to split")]
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid price, use dot to split")]
         [DisplayName("Price ($)")]
         public decimal Price { get; set; }
     }
