@@ -24,21 +24,24 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SellerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SellerId, new SelectList(ViewBag.Sellers, "Id", "Name"), htmlAttributes: new { @class = "custom-select" })
+                @Html.DropDownListFor(model => model.SellerId, new SelectList(ViewBag.Sellers, "Id", "Name"), 
+                htmlAttributes: new { @class = "custom-select" })
                 @Html.ValidationMessageFor(model => model.SellerId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.ProductId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ProductId, new SelectList(ViewBag.Products, "Id", "Name"), htmlAttributes: new { @class = "custom-select" })
+                @Html.DropDownListFor(model => model.ProductId, new SelectList(ViewBag.Products, "Id", "Name"), 
+                htmlAttributes: new { @class = "custom-select" })
                 @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CustomerId, new SelectList(ViewBag.Customers, "Id", "Name"), htmlAttributes: new { @class = "custom-select", @name = "standard", @id = "demo" })
+                @Html.DropDownListFor(model => model.CustomerId, new SelectList(ViewBag.Customers, "Id", "Name"), 
+                htmlAttributes: new { @class = "custom-select", @name = "standard", @id = "demo" })
                 @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
 
             </div>
