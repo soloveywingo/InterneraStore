@@ -29,9 +29,16 @@
                     <li>@Html.ActionLink(InterneraStore.Resources.Resource.Purchases, "Index", "Purchases")</li>
                     <li>@Html.ActionLink(InterneraStore.Resources.Resource.Customers, "Index", "Customers")</li>
                     <li>@Html.ActionLink(InterneraStore.Resources.Resource.Sellers, "Index", "Sellers")</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @InterneraStore.Resources.Resource.Language
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-item">@Html.ActionLink("English", "Change", "Language", new { LanguageAbbrevation = "en", @class = "dropdown-item" }, null)</div>
+                            <div class="dropdown-item">@Html.ActionLink("Русский", "Change", "Language", new { LanguageAbbrevation = "ru", @class = "dropdown-item" },null)</div>
+                        </div>
+                    </li>
 
-                    <li>@Html.ActionLink("Eng", "Change", "Language", new { LanguageAbbrevation = "en" }, null)</li>
-                    <li>@Html.ActionLink("Ru", "Change", "Language", new { LanguageAbbrevation = "ru" }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

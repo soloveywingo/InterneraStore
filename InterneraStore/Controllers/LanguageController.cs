@@ -22,8 +22,10 @@ namespace InterneraStore.Controllers
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(LanguageAbbrevation);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(LanguageAbbrevation);
             }
-            HttpCookie cookie = new HttpCookie("Language");
-            cookie.Value = LanguageAbbrevation;
+            HttpCookie cookie = new HttpCookie("Language")
+            {
+                Value = LanguageAbbrevation
+            };
             Response.Cookies.Add(cookie);
             return RedirectToAction("Index", "Home");
         }
