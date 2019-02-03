@@ -159,6 +159,9 @@
   <data name="Purchases" xml:space="preserve">
     <value>Покупки</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
   <data name="Sellers" xml:space="preserve">
     <value>Продавцы</value>
   </data>

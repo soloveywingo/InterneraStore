@@ -8,7 +8,7 @@
 
 <h3>@InterneraStore.Resources.Resource.DeleteConfirmation</h3>
 <div>
-    <h4>Company</h4>
+    <h4>@InterneraStore.Resources.Resource.Company</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -25,7 +25,7 @@
         @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <input type="submit" value=@InterneraStore.Resources.Resource.Delete class="btn btn-default" /> |
         @Html.ActionLink(InterneraStore.Resources.Resource.BackLink, "Index")
     </div>
     }
